@@ -1,4 +1,5 @@
 /.nrepl-port
 /.cpcache
+/.direnv
 /cljs-test-runner-out
 /target
