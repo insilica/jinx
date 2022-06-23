@@ -7,7 +7,10 @@
   lambdaisland/uri {:mvn/version "1.13.95"}}
  :jvm-opts ["-XX:-OmitStackTraceInFastThrow"]
  :aliases
- {:dev
+ {:build {:deps {io.github.seancorfield/build-clj
+                 {:git/tag "v0.8.0" :git/sha "9bd8b8a"}}
+          :ns-default build}
+  :dev
   {:extra-deps
    {com.bhauman/figwheel-main {:mvn/version "0.2.0"}
     com.bhauman/cljs-test-display {:mvn/version "0.1.1"}

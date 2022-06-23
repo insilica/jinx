@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <name>jinx</name>
+  <description>jinx is not xml-schema (it's json-schema!)</description>
+  <url>https://github.com/insilica/jinx</url>
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>https://raw.githubusercontent.com/insilica/jinx/master/LICENSE</url>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://github.com/insilica/jinx</url>
+    <connection>scm:git:git://github.com/insilica/jinx.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/insilica/jinx.git</developerConnection>
+  </scm>
+</project>
