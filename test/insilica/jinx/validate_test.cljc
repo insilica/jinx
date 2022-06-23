@@ -1,11 +1,11 @@
 ;; Copyright © 2019, JUXT LTD.
 
-(ns juxt.jinx.validate-test
+(ns insilica.jinx.validate-test
   #?@(:clj [(:require
-             [juxt.jinx.alpha.validate :as validate]
+             [insilica.jinx.validate :as validate]
              [clojure.test :refer [deftest is are testing]])]
       :cljs [(:require
-              [juxt.jinx.alpha.validate :as validate]
+              [insilica.jinx.validate :as validate]
               [cljs.test :refer-macros [deftest is are testing run-tests]])]))
 
 (defn run-validate [schema instance]

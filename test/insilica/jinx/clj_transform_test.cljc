@@ -1,8 +1,8 @@
 ;; Copyright © 2019, JUXT LTD.
 
-(ns juxt.jinx.clj-transform-test
+(ns insilica.jinx.clj-transform-test
   (:require
-   [juxt.jinx.alpha.clj-transform :refer [clj->jsch]]
+   [insilica.jinx.clj-transform :refer [clj->jsch]]
    [clojure.test :refer [deftest is]]
    #?(:clj
       [clojure.test :refer [deftest is testing]]

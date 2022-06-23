@@ -1,9 +1,9 @@
 ;; Copyright © 2019, JUXT LTD.
 
-(ns juxt.jinx.annotation-test
+(ns insilica.jinx.annotation-test
   (:require
-   [juxt.jinx.alpha.validate :as v]
-   [juxt.jinx.alpha.schema :refer [schema]]
+   [insilica.jinx.validate :as v]
+   [insilica.jinx.schema :refer [schema]]
    #?(:clj
       [clojure.test :refer [deftest is testing]]
       :cljs

@@ -1,9 +1,9 @@
 ;; Copyright © 2019, JUXT LTD.
 
-(ns juxt.jinx.resolve-test
+(ns insilica.jinx.resolve-test
   #?@(:clj
       [(:require
-        [juxt.jinx.alpha.resolve :refer [resolve-uri expand-document]]
+        [insilica.jinx.resolve :refer [resolve-uri expand-document]]
         [clojure.string :as str]
         [clojure.edn :as edn]
         [cheshire.core :as cheshire]
@@ -12,7 +12,7 @@
         [clojure.test :refer [deftest is are testing]])]
       :cljs
       [(:require
-        [juxt.jinx.alpha.resolve :refer [resolve-uri]]
+        [insilica.jinx.resolve :refer [resolve-uri]]
         [clojure.string :as str]
         [cljs-node-io.file :refer [File]]
         [lambdaisland.uri :as uri]
@@ -20,17 +20,17 @@
        (:import goog.Uri)]))
 
 (comment
-  :resolvers [[:juxt.jinx.alpha.resolve/default-resolver {"http://example.com/foo" (io/resource "schemas/json-schema.org/draft-07/schema")}]
-              :juxt.jinx.alpha.resolve/built-in])
+  :resolvers [[:insilica.jinx.resolve/default-resolver {"http://example.com/foo" (io/resource "schemas/json-schema.org/draft-07/schema")}]
+              :insilica.jinx.resolve/built-in])
 
 (deftest built-in-resolver-test
   (is
-   (resolve-uri :juxt.jinx.alpha.resolve/built-in "http://json-schema.org/draft-07/schema")))
+   (resolve-uri :insilica.jinx.resolve/built-in "http://json-schema.org/draft-07/schema")))
 
 
 (def example-map
   #?(:clj
-     {"http://example.com/test" (io/resource "juxt/jinx/test.json")
+     {"http://example.com/test" (io/resource "insilica/jinx/test.json")
       "http://example.com/literal-boolean-schema" false
       "http://example.com/literal-object-schema" {:type "string"}
       "http://example.com/literal-function-schema"
@@ -40,7 +40,7 @@
       #"http://example.com/schemas/(.*)" (fn [match] {:type "object"
                                                       :path (second match)})}
      :cljs
-     {"http://example.com/test" (File. "test/juxt/jinx/test.json")
+     {"http://example.com/test" (File. "test/insilica/jinx/test.json")
       "http://example.com/literal-boolean-schema" false
       "http://example.com/literal-object-schema" {:type "string"}
       "http://example.com/literal-function-schema"
@@ -58,7 +58,7 @@
        (=
         {"foo" "bar"}
         (resolve-uri
-         [:juxt.jinx.alpha.resolve/default-resolver m]
+         [:insilica.jinx.resolve/default-resolver m]
          "http://example.com/test"))))
 
     (testing "literal-to-schema"
@@ -66,7 +66,7 @@
        (=
         false
         (resolve-uri
-         [:juxt.jinx.alpha.resolve/default-resolver m]
+         [:insilica.jinx.resolve/default-resolver m]
          "http://example.com/literal-boolean-schema"))))
 
     (testing "literal-to-object"
@@ -74,7 +74,7 @@
        (=
         {:type "string"}
         (resolve-uri
-         [:juxt.jinx.alpha.resolve/default-resolver m]
+         [:insilica.jinx.resolve/default-resolver m]
          "http://example.com/literal-object-schema"))))
 
     (testing "literal-to-function"
@@ -83,7 +83,7 @@
         {:type "string"
          :uri "http://example.com/literal-function-schema"}
         (resolve-uri
-         [:juxt.jinx.alpha.resolve/default-resolver m]
+         [:insilica.jinx.resolve/default-resolver m]
          "http://example.com/literal-function-schema"))))
 
     (testing "regex-to-constant"
@@ -91,7 +91,7 @@
        (=
         {:type "object"}
         (resolve-uri
-         [:juxt.jinx.alpha.resolve/default-resolver example-map]
+         [:insilica.jinx.resolve/default-resolver example-map]
          "http://example.com/static/schema.json"))))
 
     (testing "regex-to-function"
@@ -99,7 +99,7 @@
        (=
         {:type "object", :path "schema1.json"}
         (resolve-uri
-         [:juxt.jinx.alpha.resolve/default-resolver example-map]
+         [:insilica.jinx.resolve/default-resolver example-map]
          "http://example.com/schemas/schema1.json"))))))
 
 
@@ -107,7 +107,7 @@
    (deftest document-expansion-test
      (let [expansion
            (expand-document
-            (edn/read-string (slurp (io/resource "juxt/jinx/petstore.edn")))
+            (edn/read-string (slurp (io/resource "insilica/jinx/petstore.edn")))
             {})]
        (is
         (=

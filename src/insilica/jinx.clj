@@ -1,10 +1,10 @@
 ;; Copyright © 2019, JUXT LTD.
 
-(ns juxt.jinx.alpha
+(ns insilica.jinx
   (:require
-   [juxt.jinx.alpha.schema :as schema]
-   [juxt.jinx.alpha.validate :as validate]
-   [juxt.jinx.alpha.clj-transform :as transform]))
+   [insilica.jinx.schema :as schema]
+   [insilica.jinx.validate :as validate]
+   [insilica.jinx.clj-transform :as transform]))
 
 (defn schema
   "Build a JSON Schema from a map (or boolean). Must conform to

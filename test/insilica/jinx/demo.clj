@@ -1,8 +1,8 @@
 ;; Copyright © 2019, JUXT LTD.
 
-(ns juxt.jinx.demo
+(ns insilica.jinx.demo
   (:require
-   [juxt.jinx.alpha :as jinx]))
+   [insilica.jinx :as jinx]))
 
 (comment
   (jinx/validate

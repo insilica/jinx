@@ -1,21 +1,21 @@
 ;; Copyright © 2019, JUXT LTD.
 
-(ns juxt.jinx.official-test
+(ns insilica.jinx.official-test
   #?@(:clj [(:require [clojure.java.io :as io]
                       [cheshire.core :as json]
                       [clojure.test :refer :all]
                       [clojure.test :as test]
-                      [juxt.jinx.alpha.validate :refer [validate]]
-                      [juxt.jinx.alpha.schema :refer [schema]]
-                      [juxt.jinx.alpha.resolve :as resolv]
-                      [juxt.jinx.alpha.schema :as schema])]
+                      [insilica.jinx.validate :refer [validate]]
+                      [insilica.jinx.schema :refer [schema]]
+                      [insilica.jinx.resolve :as resolv]
+                      [insilica.jinx.schema :as schema])]
       :cljs [(:require [cljs-node-io.core :as io :refer [slurp]]
                        [cljs-node-io.fs :as fs]
                        [cljs-node-io.file :refer [File]]
                        [cljs.test :refer-macros [deftest is testing run-tests]]
-                       [juxt.jinx.alpha.validate :refer [validate]]
-                       [juxt.jinx.alpha.schema :as schema :refer [schema]]
-                       [juxt.jinx.alpha.resolve :as resolv]
+                       [insilica.jinx.validate :refer [validate]]
+                       [insilica.jinx.schema :as schema :refer [schema]]
+                       [insilica.jinx.resolve :as resolv]
                        [cljs.nodejs :as nodejs])]))
 
 (defn- env [s]

@@ -1,6 +1,6 @@
 ;; Copyright © 2019, JUXT LTD.
 
-(ns juxt.jinx.alpha.patterns
+(ns insilica.jinx.patterns
   (:require
    [clojure.set :as set]
    [clojure.string :as str]))
