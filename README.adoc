@@ -80,8 +80,8 @@ the non-optional tests, and all but two of the optional tests.
 [source,clojure]
 ----
 (jinx/validate
-  {}
-  (jinx/schema {"type" "object"}))
+  (jinx/schema {"type" "object"}
+  {}))
 ----
 
 == Schemas
