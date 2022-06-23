@@ -24,7 +24,8 @@
 
 
 (defn idn-hostname? [s]
-  (when-let [ace #?(:clj (try
+  (when-let [ace #?(:bb (throw (Exception. "idn-hostname support is not implemented in babashka"))
+                    :clj (try
                            (java.net.IDN/toASCII s)
                            (catch IllegalArgumentException e
                              ;; Catch an error indicating this is not valid
