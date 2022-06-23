@@ -2,9 +2,9 @@
 
 {:paths ["src" "test" "resources"]
  :deps
- {cheshire/cheshire {:mvn/version "5.8.1"}
+ {cheshire/cheshire {:mvn/version "5.11.0"}
   cljs-node-io/cljs-node-io {:mvn/version "1.1.2"}
-  lambdaisland/uri {:mvn/version "1.1.0"}}
+  lambdaisland/uri {:mvn/version "1.13.95"}}
  :jvm-opts ["-XX:-OmitStackTraceInFastThrow"]
  :aliases
  {:dev
