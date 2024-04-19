@@ -11,42 +11,25 @@ jobs:
   test-and-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v10
+
+      - name: Use the Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v4
 
       - name: Cache Clojure dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
-          key: clj-jinx-${{ hashFiles('**/deps.edn') }}
-          restore-keys: clj-jinx-
+          key: clj-${{ github.repository }}-${{ hashFiles('**/deps.edn') }}
+          restore-keys: clj-${{ github.repository }}-
           path: |
             ~/.gitlibs
             ~/.m2/repository
-
-      - name: Install Nix
-        uses: cachix/install-nix-action@v17
-
-      - name: Cache Nix store
-        id: nix-cache
-        uses: john-shaffer/cache@sudo-tar
-        with:
-          key: nix-jinx-${{ hashFiles('**.nix') }}
-          restore-keys: |
-            nix-jinx-
-          path: |
-            ~/nix-db-dump
-            /nix/store
-            /nix/var/nix/profiles
-
-      - run: sudo `command -v nix-store` --load-db < ~/nix-db-dump
-        if: steps.nix-cache.outputs.cache-hit == 'true'
 
       - name: Build devShell
         run: nix build .#devShells.x86_64-linux.default
 
       - name: Run tests and build jar
         run: nix develop -c clojure -T:build ci :snapshot true
-
-      - run: |
-          sudo `command -v nix-collect-garbage` -d
-          nix-store --dump-db > ~/nix-db-dump
-        if: steps.nix-cache.outputs.cache-hit != 'true'
