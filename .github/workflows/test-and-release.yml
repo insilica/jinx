@@ -36,13 +36,14 @@ jobs:
       - run: sudo `command -v nix-store` --load-db < ~/nix-db-dump
         if: steps.nix-cache.outputs.cache-hit == 'true'
 
-      - run: nix-build default.nix -A inputDerivation -o gcroots
+      - name: Build devShell
+        run: nix build .#devShells.x86_64-linux.default
 
       - name: Run tests and build jar
-        run: nix-shell --run "clojure -T:build ci :snapshot false"
+        run: nix develop -c clojure -T:build ci :snapshot false
         
       - name: Deploy release jar
-        run: nix-shell --run "clojure -T:build deploy :snapshot false"
+        run: nix develop -c clojure -T:build deploy :snapshot false
         env:
           CLOJARS_PASSWORD: ${{secrets.CLOJARS_PASSWORD}}
           CLOJARS_USERNAME: ${{secrets.CLOJARS_USERNAME}}
